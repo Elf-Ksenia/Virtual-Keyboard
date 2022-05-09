@@ -39,10 +39,27 @@ document.addEventListener('keydown', function (event) {
       buildKeyboard()
     }
   }
-  
 })
 document.addEventListener('keyup', (event) => {
   delete keyPressed[event.key];
+})
+
+
+document.addEventListener('click', function (event) {
+  const letters = Array.from(document.getElementsByClassName('letter'));
+  if (event.target.innerHTML == 'shift') {
+    keys = '';
+    keys = upperRegister;
+    letters.forEach(function (letter) {
+      letter.classList.add('uppercase');
+    });
+    Array.prototype.splice.apply(keys, [0, 13].concat(upperRegister.splice(0, 13)));
+    keys.splice(25, 3, '{', '}', '|');
+    keys.splice(38, 2, ':', '"');
+    keys.splice(42, 1, '~');
+    keys.splice(50, 3, '<', '>', '?');
+    buildKeyboard();
+  }
 })
 
 function buildKeyboard() {
@@ -78,24 +95,20 @@ function buildKeyboard() {
       const shift = li;
     }
 
-    document.addEventListener('click', function () {
-      if (key == 'shift') {
-        keys = '';
-        keys = upperRegister;
-      }
-    })
+
 
     li.addEventListener('click', function () {
       write.focus();
       if (li.innerHTML == 'shift') {
-        letters.forEach(function (letter) {
-          letter.classList.add('uppercase');
-        });
-        Array.prototype.splice.apply(keys, [0, 13].concat(upperRegister.splice(0, 13)));
-        keys.splice(25, 3, '{', '}', '|');
-        keys.splice(38, 2, ':', '"');
-        keys.splice(42, 1, '~');
-        keys.splice(50, 3, '<', '>', '?');
+        // letters.forEach(function (letter) {
+        //   letter.classList.add('uppercase');
+        // });
+        // Array.prototype.splice.apply(keys, [0, 13].concat(upperRegister.splice(0, 13)));
+        // keys.splice(25, 3, '{', '}', '|');
+        // keys.splice(38, 2, ':', '"');
+        // keys.splice(42, 1, '~');
+        // keys.splice(50, 3, '<', '>', '?');
+        // buildKeyboard();
       }
 
 
@@ -150,5 +163,6 @@ function buildKeyboard() {
   })
   const letters = Array.from(document.getElementsByClassName('letter'));
 }
+
 
 buildKeyboard();
