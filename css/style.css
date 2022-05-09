@@ -61,8 +61,11 @@
           text-transform: uppercase;
           }
           .keyboard .space {
-          
+          background-color: rgba(243, 232, 31, 0.805);
           width: 258px;
+          }
+          .keyboard .enter {
+            background-color: rgba(243, 232, 31, 0.805);
           }
           .on {
           display: none;
